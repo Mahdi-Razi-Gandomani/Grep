@@ -1,4 +1,4 @@
-# Multi-threaded File and Directory Search Tool
+# Grep
 
 This is a multi-threaded C++ program designed to search for specific patterns within files and directories like the grep command. It supports various command-line options to customize the search behavior, such as inverting the match, printing line numbers, and setting the maximum search depth.
 
