@@ -4,15 +4,42 @@ This is a multi-threaded C++ program designed to search for specific patterns wi
 
 ---
 
-## Features
+## Compilation
 
-- **Pattern Search**: Search for a specific pattern within files.
-- **Directory Traversal**: Recursively search through directories up to a specified depth.
-- **Multi-threading**: Utilizes multiple threads to speed up the search process.
-- **Command-line Options**:
-  - `-v`: Invert the sense of matching, to select non-matching lines.
-  - `-n`: Prefix each line of output with the line number within its input file.
-  - `-L`: Print the file name that does not contain the provided matching pattern.
-  - `-f`: Search for the provided pattern in files and folders names.
-  - `-d=`: Set the maximum search depth to the integer after `=` (e.g., `-d=3`).
-  - `-th=`: Set the number of threads to the integer after `=` (e.g., `-th=6`).
+To compile the program, use the following command:
+
+```bash
+g++ -std=c++17 -pthread -o search grep.cpp
+```
+
+---
+
+## Usage
+
+```bash
+./search [OPTIONS] "PATTERN" [FILES]
+```
+---
+
+### Options
+
+| Option | Description |
+|--------|--------------|
+| `-v` | Invert match — select lines that **do not** match the pattern. |
+| `-n` | Prefix each line of output with its **line number**. |
+| `-L` | Print file names that **do not contain** the matching pattern. |
+| `-f` | Search for the pattern in **file and folder names** instead of contents. |
+| `-d=N` | Set the **maximum directory search depth** (default: `4`). |
+| `-th=N` | Set the **number of threads** (default: number of CPU cores). |
+
+> **Note:** If `-f` is enabled, the `[FILES]` argument is **not required**.
+
+---
+
+## 🧵 Multithreading Details
+
+- Each thread searches independently through directories in a shared queue.
+- Synchronization is managed using **mutex locks** and **condition variables**.
+- The number of threads defaults to your **CPU core count**, but can be overridden.
+
+---
