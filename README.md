@@ -36,7 +36,7 @@ g++ -std=c++17 -pthread -o search grep.cpp
 
 ---
 
-## 🧵 Multithreading Details
+## Multithreading Details
 
 - Each thread searches independently through directories in a shared queue.
 - Synchronization is managed using **mutex locks** and **condition variables**.
