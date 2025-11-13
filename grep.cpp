@@ -155,9 +155,9 @@ void search_dir(bool search_for_files, const std::vector<std::string>& file_name
 
 
 int main(int argc, char* argv[]) {
-    // root directory for
+    // current directory for
     // starting search
-    std::string root = "/";
+    std::string root = ".";
     // default max depth
     int max_depth = 4;
     // number of threads initially
@@ -222,7 +222,7 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    // push the first directory root with depth 0
+    // push the first directory with depth 0
     // into shared memory directories
     directories.push({root, 0});
     visited.insert(root);
